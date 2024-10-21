@@ -5,17 +5,16 @@ let Fhb = {
         {naam: 'Picard', leeftijd: 20, vakken: ['PSD1', 'NE1', 'PE2', 'WA1'], cursus: 'TI1'},
         {naam: 'John', leeftijd: 19, vakken: ['PE1', 'PSD1', 'IOT1'], cursus: 'IOT1'}
     ],
-    cursussen:['TI1', 'IOT1'],
+    cursussen:[
+        {naam: 'TI1', vakken: ['PE1', 'PSD1', 'NE1', 'PE2', 'WE1', 'WA1']},
+        {naam: 'IOT1', vakken: ['PE1', 'PSD1', 'IOT1']}
+    ],
     inschrijven: function(who, leeftijd, cursus) {
-        if(this.cursussen.indexOf(cursus) != -1){
-            this.student.push({naam: who, leeftijd: leeftijd, vakken: [], cursus: cursus})
-            if(cursus === 'TI1'){
-                this.student[this.student.length - 1].vakken = ['PE1', 'PSD1', 'NE1', 'PE2', 'WE1', 'WA1'];
-            } else if(cursus === 'IOT1'){
-                this.student[this.student.length - 1].vakken = ['PE1', 'PSD1', 'IOT1']
-            }
+        try{
+            this.student.push({naam: who, leeftijd: leeftijd, vakken: this.cursussen.find(x => x.naam === cursus).vakken, cursus: cursus})
+        }catch(Error){
+            console.error('Ongeldige cursus!')
         }
-
     }
 }
 
