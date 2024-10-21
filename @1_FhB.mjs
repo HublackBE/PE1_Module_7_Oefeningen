@@ -11,7 +11,7 @@ let Fhb = {
     ],
     inschrijven: function(who, leeftijd, cursus) {
         try{
-            this.student.push({naam: who, leeftijd: leeftijd, vakken: this.cursussen.find(x => x.naam === cursus).vakken, cursus: cursus})
+            this.student.push({naam: who, leeftijd: leeftijd, vakken: this.cursussen.find(x => x.naam === cursus.toUpperCase()).vakken, cursus: cursus.toUpperCase()})
         }catch(Error){
             console.error('Ongeldige cursus!')
         }
@@ -19,6 +19,6 @@ let Fhb = {
 }
 
 
-Fhb.inschrijven('Kevin', 21, 'TI1');
+Fhb.inschrijven('Kevin', 21, 'ti1');
 
 console.log(Fhb.student)
